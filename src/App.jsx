@@ -1,7 +1,5 @@
-import { useState } from 'react'
-import './App.css'
-
-import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import { useState } from 'react';
+import styled from 'styled-components';
 import {
   MainContainer,
   ChatContainer,
@@ -10,6 +8,12 @@ import {
   MessageInput,
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
+import Slider from './Slider';
+
+import './App.css'
+import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+
+import workExperience from './workExperience';
 
 function App() {
   const [isTyping, setIsTyping] = useState(false);
@@ -36,7 +40,7 @@ function App() {
 
     const apiSystemMessage = {
       role: "system",
-      content: "Tell me a silly story.",
+      content: `Expect the user to ask about my work experience. This is my work experience: ${workExperience}. If the user does not ask about my work experience, prompt them to ask about my work experience instead of making something else up. Keep your response to 3 sentences maximum. Answer in the tone of a ${'sexy scientist'}.`,
     }
 
     const apiRequest = {
@@ -44,7 +48,20 @@ function App() {
       "messages": [
         apiSystemMessage,
         ...apiChat
-      ]
+      ],
+      // 0-2
+      // "temperature": 0,
+      "temperature": 0,
+
+      // 0 to 1, percentage
+      // "top_p": 0.1,
+      "top_p": .1,
+
+      // -2 to 2
+      "presence_penalty": 0,
+
+      // -2 to 2
+      "frequency_penalty": 0
     }
 
     await fetch('https://api.openai.com/v1/chat/completions', {
@@ -71,7 +88,7 @@ function App() {
   }
 
   return (
-    <>
+    <FlexContainer>
       <div style={{ position: "relative", height: "65vh", width: "40vw" }}>
         <MainContainer>
           <ChatContainer>
@@ -85,8 +102,17 @@ function App() {
           </ChatContainer>
         </MainContainer>
       </div>
-    </>
+      <div>
+        Character/Tone: <input placeholder="e.g. pirate" />
+        <Slider/>
+      </div>
+    </FlexContainer>
   );
 }
 
 export default App
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`
