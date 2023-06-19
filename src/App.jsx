@@ -21,7 +21,7 @@ function App() {
       <ChatFeature setDisablePersona={setDisablePersona} persona={persona} isTyping={isTyping} setIsTyping={setIsTyping} chatHistory={chatHistory} setChatHistory={setChatHistory}/>
       <Flex>
         <div>
-          <DropdownInput selectedOption={persona} setSelectedOption={setPersona} disablePersona={disablePersona} />
+          <DropdownInput selectedOption={persona} setSelectedOption={setPersona} disabled={persona && disablePersona} />
           <DisclaimerDiv>{(persona && disablePersona) ? "refresh to change persona" : null}</DisclaimerDiv>
         </div>
         <PromptIdeasButton setIsTyping={setIsTyping} chatHistory={chatHistory} setChatHistory={setChatHistory}/>
