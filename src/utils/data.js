@@ -1,3 +1,12 @@
+const personaList = ["Snoop Dogg", "a pirate", "Shakespeare", "Dr. Seuss", "a poet", "The Beatles", "Mark Twain"];
+const promptList = `Here are some questions you can ask me: \n
+  "Does Aruna have any experience with react, stripe.js, and ruby on rails?" \n
+  "Explain her impact on companies she has worked for." \n
+  "Does she have experience working with cross-functional teams?" \n
+  "Tell me about a challenge Aruna has faced." \n
+  "Tell me about Aruna's work experience."
+`;
+
 const workExperience = `Aruna Evan agnanas@post.harvard.edu | 857-998-7740 | https://aruna-x.github.io/portfolio/
 FULL STACK SOFTWARE ENGINEER
 
@@ -41,4 +50,4 @@ Classes: CS 50 Intro to Computer Sci, ENG-SCI 50 Intro to Electrical Engineering
 Awarded Top 7 blog posts of the week on dev.to twice: Abstract Syntax Trees & Javascript Closures. Badge on profile.
 `
 
-export default workExperience;
+export { workExperience, personaList, promptList };

@@ -2,29 +2,30 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import DropdownInput from './Components/DropdownInput';
+import PromptIdeasButton from './Components/PromptIdeasButton'
 import ChatFeature from './Components/ChatFeature';
 
 import './style/App.css'
 
-/** 
- * Does Aruna have any experience with react, stripe.js, and ruby on rails?
- * Explain her impact on companies she has worked for.
- * Does she have experience working with cross-functional teams?
- * Tell me about a challenge Aruna has faced. 
- */
-
 function App() {
   const [persona, setPersona] = useState('');
   const [disablePersona, setDisablePersona] = useState(false);
-  const personaList = ["Snoop Dogg", "a pirate", "Shakespeare", "Dr. Seuss", "a poet", "The Beatles", "Mark Twain"];
+  const [chatHistory, setChatHistory] = useState([{
+    message: "Hi, I'm SillyCV. Ask me anything about Aruna's resume.",
+    sender: "SillyCV",
+  },]);
+  const [isTyping, setIsTyping] = useState(false);
 
   return (
     <div>
-      <ChatFeature setDisablePersona={setDisablePersona} persona={persona} />
-      <div>
-        <DropdownInput options={personaList} selectedOption={persona} setSelectedOption={setPersona} disabled={disablePersona} />
-        <DisclaimerDiv>{disablePersona ? "refresh to change persona" : null}</DisclaimerDiv>
-      </div>
+      <ChatFeature setDisablePersona={setDisablePersona} persona={persona} isTyping={isTyping} setIsTyping={setIsTyping} chatHistory={chatHistory} setChatHistory={setChatHistory}/>
+      <Flex>
+        <div>
+          <DropdownInput selectedOption={persona} setSelectedOption={setPersona} disablePersona={disablePersona} />
+          <DisclaimerDiv>{(persona && disablePersona) ? "refresh to change persona" : null}</DisclaimerDiv>
+        </div>
+        <PromptIdeasButton setIsTyping={setIsTyping} chatHistory={chatHistory} setChatHistory={setChatHistory}/>
+      </Flex>
     </div>
   );
 }
@@ -33,4 +34,11 @@ export default App
 
 const DisclaimerDiv = styled.div`
   font-size: 14px;
+  color: black;
+`
+
+const Flex = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `

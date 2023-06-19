@@ -1,31 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DropdownInput = ({options, selectedOption, setSelectedOption}) => {
+import { personaList } from '../utils/data';
+
+
+const DropdownInput = ({ selectedOption, setSelectedOption, disablePersona }) => {
   
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
   };
 
   return (
-    <div>
+    <StyledDiv>
       <label htmlFor="dropdown">{"Persona: "}</label>
-      <Select id="dropdown" value={selectedOption} onChange={handleOptionChange}>
+      <Select id="dropdown" value={selectedOption} onChange={handleOptionChange} disabled={disablePersona}>
         <option value="">-- Select --</option>
-        {options.map(o => {
-          return <option value={o}>{o}</option>
+        {personaList.map(o => {
+          return <option key={o} value={o}>{o}</option>
         })}
       </Select>
-    </div>
+    </StyledDiv>
   );
 };
 
 export default DropdownInput;
 
+const StyledDiv = styled.div`
+  color: black;
+`
+
 const Select = styled.select`
   padding: 5px 10px;
-  margin: 15px 0px 5px 0px;
+  margin-top: 15px;
   &:focus {
     outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 `
