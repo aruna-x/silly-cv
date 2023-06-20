@@ -8,7 +8,7 @@ Ask SillyCV questions about my work experience. Adjust the personality at the bo
 
 - `npm install`
 - add OpenAI key to .env with variable 'VITE_OPENAI_KEY'
-- also in .env, add your own base for auto-deploy via Github Actions: 'VITE_BASE_DEPLOY_SITE'
+- replace '/silly-cv/' with your own base for Github Actions auto-deploy in `vite.config.js`
 - `npm run dev`
 
 ## Extensibility
