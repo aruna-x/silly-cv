@@ -30,4 +30,10 @@ const Button = styled.button`
     cursor: pointer;
     background-color: #e6e6e6;
   }
+
+  @media (max-width: 768px) {
+    margin: 10px auto 0 auto;
+    padding: 10px 15px;
+    max-width: 50vw;
+  }
 `

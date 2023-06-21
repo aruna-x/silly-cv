@@ -12,9 +12,9 @@ const DropdownInput = ({ selectedOption, setSelectedOption, disabled }) => {
 
   return (
     <StyledDiv>
-      <label htmlFor="dropdown">{"Persona: "}</label>
+      <label htmlFor="dropdown" hidden>Persona</label>
       <Select id="dropdown" value={selectedOption} onChange={handleOptionChange} disabled={disabled}>
-        <option value="">-- Select --</option>
+        <option value="">-- Select Persona --</option>
         {personaList.map(o => {
           return <option key={o} value={o}>{o}</option>
         })}
@@ -32,6 +32,12 @@ const StyledDiv = styled.div`
 const Select = styled.select`
   padding: 5px 10px;
   margin-top: 15px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    margin-top: 15px;
+  }
+
   &:focus {
     outline: none;
   }

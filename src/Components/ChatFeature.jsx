@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { 
   MainContainer, 
   ChatContainer, 
@@ -83,7 +84,7 @@ function ChatFeature({ setDisablePersona, persona, isTyping, setIsTyping, chatHi
   }
 
   return (
-    <div style={{ position: "relative", height: "65vh", width: "45vw" }}>
+    <ChatStyle>
       <MainContainer>
         <ChatContainer>
           <MessageList
@@ -95,8 +96,17 @@ function ChatFeature({ setDisablePersona, persona, isTyping, setIsTyping, chatHi
           <MessageInput placeholder="Type message here" onSend={handleSend} attachButton={false} autoFocus />
         </ChatContainer>
       </MainContainer>
-    </div>
+    </ChatStyle>
   )
 }
 
 export default ChatFeature;
+
+const ChatStyle = styled.div`
+  margin: auto;
+  height: 65vh;
+  width: 45vw;
+  @media (max-width: 768px) {
+    width: 80vw;
+  }
+`
